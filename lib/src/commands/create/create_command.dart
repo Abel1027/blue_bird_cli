@@ -38,11 +38,9 @@ class CreateCommand extends Command<int> {
   /// {@macro create_command}
   CreateCommand({
     required Logger logger,
-    MasonGeneratorFromBundle? generatorFromBundle,
-    MasonGeneratorFromBrick? generatorFromBrick,
+    required BlueBirdMasonGenerator blueBirdMasonGenerator,
   })  : _logger = logger,
-        _generatorFromBundle = generatorFromBundle ?? MasonGenerator.fromBundle,
-        _generatorFromBrick = generatorFromBrick ?? MasonGenerator.fromBrick {
+        _blueBirdMasonGenerator = blueBirdMasonGenerator {
     argParser
       ..addOption(
         'output-directory',
@@ -112,8 +110,7 @@ class CreateCommand extends Command<int> {
   }
 
   final Logger _logger;
-  final MasonGeneratorFromBundle _generatorFromBundle;
-  final MasonGeneratorFromBrick _generatorFromBrick;
+  final BlueBirdMasonGenerator _blueBirdMasonGenerator;
 
   @override
   String get name => 'create';
@@ -141,8 +138,6 @@ class CreateCommand extends Command<int> {
     final description = _description;
     final orgName = _orgName;
     final template = _template;
-    final generateProgress = _logger.progress('Bootstrapping');
-    final generator = await _getGeneratorForTemplate(template);
     final android = _argResults['android'] as String? ?? 'true';
     final ios = _argResults['ios'] as String? ?? 'true';
     final web = _argResults['web'] as String? ?? 'true';
@@ -150,7 +145,7 @@ class CreateCommand extends Command<int> {
     final macos = _argResults['macos'] as String? ?? 'true';
     final windows = _argResults['windows'] as String? ?? 'true';
     final applicationId = _argResults['application-id'] as String?;
-    var vars = <String, dynamic>{
+    final vars = <String, dynamic>{
       'project_name': projectName,
       'description': description,
       'org_name': orgName,
@@ -164,36 +159,21 @@ class CreateCommand extends Command<int> {
         if (windows.toBool()) 'windows',
       ],
     };
-    await generator.hooks.preGen(vars: vars, onVarsChanged: (v) => vars = v);
     final target = DirectoryGeneratorTarget(outputDirectory);
-    final files = await generator.generate(target, vars: vars, logger: _logger);
-    generateProgress.complete('Generated ${files.length} file(s)');
+
+    await _blueBirdMasonGenerator.generate(
+      template: template,
+      vars: vars,
+      target: target,
+    );
 
     await template.onGenerateComplete(
       _logger,
       Directory(path.join(target.dir.path, projectName)),
+      _blueBirdMasonGenerator,
     );
 
     return ExitCode.success.code;
-  }
-
-  Future<MasonGenerator> _getGeneratorForTemplate(Template template) async {
-    try {
-      final brick = Brick.version(
-        name: template.bundle.name,
-        version: '^${template.bundle.version}',
-      );
-      _logger.detail(
-        '''Building generator from brick: ${brick.name} ${brick.location.version}''',
-      );
-      return await _generatorFromBrick(brick);
-    } catch (_) {
-      _logger.detail('Building generator from brick failed: $_');
-    }
-    _logger.detail(
-      '''Building generator from bundle ${template.bundle.name} ${template.bundle.version}''',
-    );
-    return _generatorFromBundle(template.bundle);
   }
 
   /// Gets the project name.

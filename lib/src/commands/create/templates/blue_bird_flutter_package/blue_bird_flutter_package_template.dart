@@ -16,7 +16,11 @@ class FlutterPackageTemplate extends Template {
         );
 
   @override
-  Future<void> onGenerateComplete(Logger logger, Directory outputDir) async {
+  Future<void> onGenerateComplete(
+    Logger logger,
+    Directory outputDir,
+    BlueBirdMasonGenerator blueBirdMasonGenerator,
+  ) async {
     await installFlutterPackages(logger, outputDir);
     await applyDartFixes(logger, outputDir);
     _logSummary(logger);
