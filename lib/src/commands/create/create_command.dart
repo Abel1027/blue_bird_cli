@@ -106,6 +106,11 @@ class CreateCommand extends Command<int> {
         'application-id',
         help: 'The bundle identifier on iOS or application id on Android. '
             '(defaults to <org-name>.<project-name>)',
+      )
+      ..addOption(
+        'in-project',
+        help: 'Include the new project within an existing one with all '
+            'dependencies imported',
       );
   }
 
@@ -145,6 +150,7 @@ class CreateCommand extends Command<int> {
     final macos = _argResults['macos'] as String? ?? 'true';
     final windows = _argResults['windows'] as String? ?? 'true';
     final applicationId = _argResults['application-id'] as String?;
+    final inProject = _argResults['in-project'] as String? ?? 'false';
     final vars = <String, dynamic>{
       'project_name': projectName,
       'description': description,
@@ -158,6 +164,7 @@ class CreateCommand extends Command<int> {
         if (macos.toBool()) 'macos',
         if (windows.toBool()) 'windows',
       ],
+      'in_project': inProject.toBool(),
     };
     final target = DirectoryGeneratorTarget(outputDirectory);
 

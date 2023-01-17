@@ -42,7 +42,7 @@ class FlutterProjectTemplate extends Template {
     Directory projectDir,
   ) async {
     final template = FlutterPackageTemplate();
-    final vars = {'project_name': 'feat_example'};
+    final vars = {'project_name': 'feat_example', 'in_project': 'true'};
     final directory = Directory(path.join(projectDir.path, 'features'));
     final target = DirectoryGeneratorTarget(directory);
 
