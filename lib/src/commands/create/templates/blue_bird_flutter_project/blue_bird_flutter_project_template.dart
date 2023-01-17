@@ -24,6 +24,8 @@ class FlutterProjectTemplate extends Template {
   ) async {
     await _createExamplePackage(blueBirdMasonGenerator, outputDir);
     await installFlutterPackages(logger, outputDir, recursive: true);
+    final l10nPath = path.join(outputDir.path, 'core', 'internationalization');
+    await generateL10n(logger, Directory(l10nPath));
     await applyDartFixes(logger, outputDir);
     _logSummary(logger);
   }

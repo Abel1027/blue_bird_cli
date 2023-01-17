@@ -52,3 +52,18 @@ Future<void> applyDartFixes(
     applyFixesProgress.complete();
   }
 }
+
+/// Runs `flutter gen-l10n` in the [l10nDir].
+Future<void> generateL10n(
+  Logger logger,
+  Directory l10nDir,
+) async {
+  final isFlutterInstalled = await Flutter.installed(logger: logger);
+  if (isFlutterInstalled) {
+    final generateL10nProgress = logger.progress(
+      'Running "flutter gen-l10n" in ${l10nDir.path}',
+    );
+    await Flutter.l10nGen(cwd: l10nDir.path, logger: logger);
+    generateL10nProgress.complete();
+  }
+}

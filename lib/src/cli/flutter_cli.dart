@@ -128,6 +128,24 @@ class Flutter {
     );
   }
 
+  /// Generate l10n files (`flutter gen-l10n`).
+  static Future<void> l10nGen({
+    String cwd = '.',
+    bool recursive = false,
+    required Logger logger,
+  }) async {
+    await _runCommand(
+      cmd: (cwd) => _Cmd.run(
+        'flutter',
+        ['gen-l10n'],
+        workingDirectory: cwd,
+        logger: logger,
+      ),
+      cwd: cwd,
+      recursive: recursive,
+    );
+  }
+
 //   /// Run tests (`flutter test`).
 //   /// Returns a list of exit codes for each test process.
 //   static Future<List<int>> test({
