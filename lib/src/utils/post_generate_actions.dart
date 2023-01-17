@@ -2,21 +2,6 @@ import 'package:blue_bird_cli/src/cli/cli.dart';
 import 'package:mason/mason.dart';
 import 'package:universal_io/io.dart';
 
-/// Runs `flutter pub get` in the [outputDir].
-Future<void> installDartPackages(
-  Logger logger,
-  Directory outputDir,
-) async {
-  final isFlutterInstalled = await Flutter.installed(logger: logger);
-  if (isFlutterInstalled) {
-    final installDependenciesProgress = logger.progress(
-      'Running "flutter pub get" in ${outputDir.path}',
-    );
-    await Flutter.pubGet(cwd: outputDir.path, logger: logger);
-    installDependenciesProgress.complete();
-  }
-}
-
 /// Runs `flutter packages get` in the [outputDir].
 Future<void> installFlutterPackages(
   Logger logger,
