@@ -23,7 +23,7 @@ class FlutterProjectTemplate extends Template {
     BlueBirdMasonGenerator blueBirdMasonGenerator,
   ) async {
     await _createExamplePackage(blueBirdMasonGenerator, outputDir);
-    await installFlutterPackages(logger, outputDir);
+    await installFlutterPackages(logger, outputDir, recursive: true);
     await applyDartFixes(logger, outputDir);
     _logSummary(logger);
   }
