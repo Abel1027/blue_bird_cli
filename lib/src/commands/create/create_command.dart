@@ -111,6 +111,7 @@ class CreateCommand extends Command<int> {
         'in-project',
         help: 'Include the new project within an existing one with all '
             'dependencies imported',
+        defaultsTo: 'false',
       );
   }
 
