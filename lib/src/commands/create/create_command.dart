@@ -146,10 +146,6 @@ class CreateCommand extends Command<int> {
     final template = _template;
     final android = _argResults['android'] as String? ?? 'true';
     final ios = _argResults['ios'] as String? ?? 'true';
-    final web = _argResults['web'] as String? ?? 'true';
-    final linux = _argResults['linux'] as String? ?? 'true';
-    final macos = _argResults['macos'] as String? ?? 'true';
-    final windows = _argResults['windows'] as String? ?? 'true';
     final applicationId = _argResults['application-id'] as String?;
     final inProject = _argResults['in-project'] as String? ?? 'false';
     final vars = <String, dynamic>{
@@ -160,10 +156,6 @@ class CreateCommand extends Command<int> {
       'platforms': <String>[
         if (android.toBool()) 'android',
         if (ios.toBool()) 'ios',
-        if (web.toBool()) 'web',
-        if (linux.toBool()) 'linux',
-        if (macos.toBool()) 'macos',
-        if (windows.toBool()) 'windows',
       ],
       'in_project': inProject.toBool(),
     };

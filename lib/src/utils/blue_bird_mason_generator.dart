@@ -26,7 +26,7 @@ class BlueBirdMasonGenerator {
 
     await generator.hooks.preGen(vars: args, onVarsChanged: (v) => args = v);
 
-    final files = await generator.generate(target, vars: vars, logger: _logger);
+    final files = await generator.generate(target, vars: args, logger: _logger);
 
     _logger
         .progress('Bootstrapping')
