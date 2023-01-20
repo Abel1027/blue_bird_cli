@@ -7,6 +7,7 @@ import 'package:blue_bird_cli/src/commands/commands.dart';
 import 'package:blue_bird_cli/src/utils/utils.dart';
 import 'package:mason/mason.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:path/path.dart' as p;
 import 'package:pub_updater/pub_updater.dart';
 import 'package:test/test.dart';
 
@@ -29,8 +30,9 @@ class MockProgress extends Mock implements Progress {}
 
 class MockPubUpdater extends Mock implements PubUpdater {}
 
-class MockBlueBirdMasonGenerator extends Mock
-    implements BlueBirdMasonGenerator {}
+class MockMasonGenerator extends Mock implements MasonGenerator {}
+
+class MockGeneratorHooks extends Mock implements GeneratorHooks {}
 
 class MockTemplate extends Mock implements Template {}
 
@@ -69,14 +71,51 @@ Usage: blue_bird create <project name>
 Run "blue_bird help" to see global options.'''
 ];
 
+String pubspec(String name) => '''
+name: $name
+environment:
+  sdk: ">=2.13.0 <3.0.0"
+''';
+
+const intlPubspec = '''
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
+''';
+
+const l10n = '''
+synthetic-package: false
+arb-dir: lib/src/l10n
+template-arb-file: intl_en.arb
+output-dir: lib/src/l10n/generated/
+output-localization-file: app_localizations.dart
+output-class: S
+''';
+
+const intlArb = '''
+{
+    "example": "Example"
+}
+''';
+
 void main() {
   group('create', () {
     late Progress progress;
     late List<String> progressLogs;
     late Logger logger;
 
-    const generatedProjectFiles = 133;
-    const generatedFlutterPackageFiles = 19;
+    final generatedProjectFiles = List.filled(
+      133,
+      const GeneratedFile.created(path: ''),
+    );
+    final generatedFlutterPackageFiles = List.filled(
+      19,
+      const GeneratedFile.created(path: ''),
+    );
 
     setUpAll(() {
       registerFallbackValue(FakeTemplate());
@@ -87,27 +126,13 @@ void main() {
     setUp(() {
       progress = MockProgress();
       progressLogs = <String>[];
-      //   pubUpdater = MockPubUpdater();
       logger = MockLogger();
-      //   commandRunner = BlueBirdCliCommandRunner(
-      //     logger: logger,
-      //     pubUpdater: pubUpdater,
-      //   );
 
-      //   when(
-      //     () => pubUpdater.getLatestVersion(any()),
-      //   ).thenAnswer((_) async => packageVersion);
       when(() => progress.complete(any())).thenAnswer((_) {
         final message = _.positionalArguments.elementAt(0) as String?;
         if (message != null) progressLogs.add(message);
       });
       when(() => logger.progress(any())).thenReturn(progress);
-      //   when(
-      //     () => pubUpdater.isUpToDate(
-      //       packageName: any(named: 'packageName'),
-      //       currentVersion: any(named: 'currentVersion'),
-      //     ),
-      //   ).thenAnswer((_) => Future.value(true));
     });
 
     test('can be instantiated', () {
@@ -170,15 +195,158 @@ void main() {
       'completes successfully flutter_project with correct output',
       () async {
         final argResults = MockArgResults();
+        final hooks = MockGeneratorHooks();
+        final generator = MockMasonGenerator();
         final command = CreateCommand(
           logger: logger,
-          blueBirdMasonGenerator: BlueBirdMasonGenerator(logger: logger),
+          blueBirdMasonGenerator: BlueBirdMasonGenerator(
+            logger: logger,
+            generatorFromBundle: (_) async => generator,
+          ),
         )..argResultOverrides = argResults;
         when(() => argResults['output-directory'] as String?)
             .thenReturn('.tmp');
         when(() => argResults['application-id'] as String?)
             .thenReturn('blue.bird.org.my_flutter_project');
         when(() => argResults.rest).thenReturn(['my_flutter_project']);
+        when(() => generator.hooks).thenReturn(hooks);
+        when(
+          () => hooks.preGen(
+            vars: any(named: 'vars'),
+            onVarsChanged: any(named: 'onVarsChanged'),
+          ),
+        ).thenAnswer((_) async {});
+        when(
+          () => generator.generate(
+            any(),
+            vars: any(named: 'vars'),
+            logger: any(named: 'logger'),
+          ),
+        ).thenAnswer((_) async {
+          final intlFile = File(
+            p.join(
+              '.tmp',
+              'my_flutter_project',
+              'core',
+              'internationalization',
+              'pubspec.yaml',
+            ),
+          );
+
+          final packageFiles = [
+            File(
+              p.join(
+                '.tmp',
+                'my_flutter_project',
+                'pubspec.yaml',
+              ),
+            ),
+            File(
+              p.join(
+                '.tmp',
+                'my_flutter_project',
+                'core',
+                'components',
+                'pubspec.yaml',
+              ),
+            ),
+            File(
+              p.join(
+                '.tmp',
+                'my_flutter_project',
+                'core',
+                'dependencies',
+                'pubspec.yaml',
+              ),
+            ),
+            File(
+              p.join(
+                '.tmp',
+                'my_flutter_project',
+                'core',
+                'di',
+                'pubspec.yaml',
+              ),
+            ),
+            intlFile,
+            File(
+              p.join(
+                '.tmp',
+                'my_flutter_project',
+                'core',
+                'network',
+                'pubspec.yaml',
+              ),
+            ),
+            File(
+              p.join(
+                '.tmp',
+                'my_flutter_project',
+                'core',
+                'routes',
+                'pubspec.yaml',
+              ),
+            ),
+            File(
+              p.join(
+                '.tmp',
+                'my_flutter_project',
+                'core',
+                'theme',
+                'pubspec.yaml',
+              ),
+            ),
+            File(
+              p.join(
+                '.tmp',
+                'my_flutter_project',
+                'features',
+                'feat_example',
+                'pubspec.yaml',
+              ),
+            ),
+          ];
+
+          for (final file in packageFiles) {
+            file
+              ..createSync(recursive: true)
+              ..writeAsStringSync(pubspec(p.basename(p.dirname(file.path))));
+          }
+
+          // append intl dependencies to pubspec
+          intlFile.writeAsStringSync(intlPubspec, mode: FileMode.append);
+
+          // create l10n config file
+          File(
+            p.join(
+              '.tmp',
+              'my_flutter_project',
+              'core',
+              'internationalization',
+              'l10n.yaml',
+            ),
+          )
+            ..createSync(recursive: true)
+            ..writeAsStringSync(l10n);
+
+          // create arb file
+          File(
+            p.join(
+              '.tmp',
+              'my_flutter_project',
+              'core',
+              'internationalization',
+              'lib',
+              'src',
+              'l10n',
+              'intl_en.arb',
+            ),
+          )
+            ..createSync(recursive: true)
+            ..writeAsStringSync(intlArb);
+
+          return generatedProjectFiles;
+        });
 
         final result = await command.run();
         expect(result, equals(ExitCode.success.code));
@@ -187,8 +355,8 @@ void main() {
           progressLogs,
           equals(
             [
-              'Generated $generatedProjectFiles file(s)',
-              'Generated $generatedFlutterPackageFiles file(s)'
+              'Generated ${generatedProjectFiles.length} file(s)',
+              'Generated ${generatedProjectFiles.length} file(s)'
             ],
           ),
         );
@@ -259,15 +427,39 @@ void main() {
       'completes successfully flutter_package with correct output',
       () async {
         final argResults = MockArgResults();
+        final hooks = MockGeneratorHooks();
+        final generator = MockMasonGenerator();
         final command = CreateCommand(
           logger: logger,
-          blueBirdMasonGenerator: BlueBirdMasonGenerator(logger: logger),
+          blueBirdMasonGenerator: BlueBirdMasonGenerator(
+            logger: logger,
+            generatorFromBundle: (_) async => generator,
+          ),
         )..argResultOverrides = argResults;
         when(() => argResults['output-directory'] as String?)
             .thenReturn('.tmp');
         when(() => argResults['template'] as String?)
             .thenReturn('flutter_package');
         when(() => argResults.rest).thenReturn(['my_flutter_package']);
+        when(() => generator.hooks).thenReturn(hooks);
+        when(
+          () => hooks.preGen(
+            vars: any(named: 'vars'),
+            onVarsChanged: any(named: 'onVarsChanged'),
+          ),
+        ).thenAnswer((_) async {});
+        when(
+          () => generator.generate(
+            any(),
+            vars: any(named: 'vars'),
+            logger: any(named: 'logger'),
+          ),
+        ).thenAnswer((_) async {
+          File(p.join('.tmp', 'my_flutter_package', 'pubspec.yaml'))
+            ..createSync(recursive: true)
+            ..writeAsStringSync(pubspec('my_flutter_package'));
+          return generatedFlutterPackageFiles;
+        });
 
         final result = await command.run();
         expect(result, equals(ExitCode.success.code));
@@ -275,7 +467,7 @@ void main() {
         expect(
           progressLogs,
           equals(
-            ['Generated $generatedFlutterPackageFiles file(s)'],
+            ['Generated ${generatedFlutterPackageFiles.length} file(s)'],
           ),
         );
         verify(
