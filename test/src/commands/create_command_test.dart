@@ -75,7 +75,7 @@ void main() {
     late List<String> progressLogs;
     late Logger logger;
 
-    const generatedProjectFiles = 91;
+    const generatedProjectFiles = 133;
     const generatedFlutterPackageFiles = 19;
 
     setUpAll(() {
