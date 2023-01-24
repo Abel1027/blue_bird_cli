@@ -1,7 +1,7 @@
 name: blue_bird_cli
 description: Blue Bird CLI.
 version: 0.1.0
-publish_to: none
+repository: https://github.com/Abel1027/blue_bird_cli
 
 environment:
   sdk: ">=2.18.0 <3.0.0"
