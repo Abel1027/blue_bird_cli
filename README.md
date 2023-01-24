@@ -2,7 +2,7 @@
 <img src="https://github.com/Abel1027/blue_bird_cli/raw/main/blue_bird_cli_logo.svg" alt="Blue Bird CLI" height=300/>
 </p>
 
-[!coverage][coverage_badge]
+[![coverage][coverage_badge]][coverage_badge]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
 
@@ -246,7 +246,7 @@ blue_bird create my_package --template flutter_package
 
 ---
 
-[coverage_badge]: coverage_badge.svg
+[coverage_badge]: https://github.com/Abel1027/blue_bird_cli/raw/develop/coverage_badge.svg
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
