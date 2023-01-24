@@ -2,21 +2,6 @@ import 'package:blue_bird_cli/src/cli/cli.dart';
 import 'package:mason/mason.dart';
 import 'package:universal_io/io.dart';
 
-/// Runs `flutter pub get` in the [outputDir].
-Future<void> installDartPackages(
-  Logger logger,
-  Directory outputDir,
-) async {
-  final isFlutterInstalled = await Flutter.installed(logger: logger);
-  if (isFlutterInstalled) {
-    final installDependenciesProgress = logger.progress(
-      'Running "flutter pub get" in ${outputDir.path}',
-    );
-    await Flutter.pubGet(cwd: outputDir.path, logger: logger);
-    installDependenciesProgress.complete();
-  }
-}
-
 /// Runs `flutter packages get` in the [outputDir].
 Future<void> installFlutterPackages(
   Logger logger,
@@ -50,5 +35,20 @@ Future<void> applyDartFixes(
       logger: logger,
     );
     applyFixesProgress.complete();
+  }
+}
+
+/// Runs `flutter gen-l10n` in the [l10nDir].
+Future<void> generateL10n(
+  Logger logger,
+  Directory l10nDir,
+) async {
+  final isFlutterInstalled = await Flutter.installed(logger: logger);
+  if (isFlutterInstalled) {
+    final generateL10nProgress = logger.progress(
+      'Running "flutter gen-l10n" in ${l10nDir.path}',
+    );
+    await Flutter.l10nGen(cwd: l10nDir.path, logger: logger);
+    generateL10nProgress.complete();
   }
 }

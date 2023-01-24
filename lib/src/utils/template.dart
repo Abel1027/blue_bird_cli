@@ -1,3 +1,4 @@
+import 'package:blue_bird_cli/src/utils/blue_bird_mason_generator.dart';
 import 'package:mason/mason.dart';
 import 'package:universal_io/io.dart';
 
@@ -24,5 +25,9 @@ abstract class Template {
   final String help;
 
   /// Callback invoked after template generation has completed.
-  Future<void> onGenerateComplete(Logger logger, Directory outputDir);
+  Future<void> onGenerateComplete(
+    Logger logger,
+    Directory outputDir,
+    BlueBirdMasonGenerator blueBirdMasonGenerator,
+  );
 }

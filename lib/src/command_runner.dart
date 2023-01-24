@@ -1,6 +1,7 @@
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:blue_bird_cli/src/commands/commands.dart';
+import 'package:blue_bird_cli/src/utils/blue_bird_mason_generator.dart';
 import 'package:blue_bird_cli/src/version.dart';
 import 'package:mason_logger/mason_logger.dart';
 import 'package:pub_updater/pub_updater.dart';
@@ -39,7 +40,12 @@ class BlueBirdCliCommandRunner extends CommandRunner<int> {
 
     // Add sub commands
     addCommand(UpdateCommand(logger: _logger, pubUpdater: _pubUpdater));
-    addCommand(CreateCommand(logger: _logger));
+    addCommand(
+      CreateCommand(
+        logger: _logger,
+        blueBirdMasonGenerator: BlueBirdMasonGenerator(logger: _logger),
+      ),
+    );
   }
 
   @override

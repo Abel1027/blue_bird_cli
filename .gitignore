@@ -10,6 +10,7 @@ pubspec.lock
 .test_coverage.dart
 coverage/
 .test_runner.dart
+.tmp/
 
 # Android studio and IntelliJ
 .idea
