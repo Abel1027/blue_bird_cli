@@ -47,126 +47,126 @@ blue_bird create my_project
 
 The stucture of the new project will be the following:
 
-📦my_project
- ┣ 📂android
- ┣ 📂core
- ┃ ┣ 📂components
- ┃ ┃ ┣ 📂lib
- ┃ ┃ ┃ ┣ 📂src
- ┃ ┃ ┃ ┃ ┣ 📂config
- ┃ ┃ ┃ ┃ ┃ ┗ 📜components_config.dart
- ┃ ┃ ┃ ┃ ┗ 📂presentation
- ┃ ┃ ┃ ┃ ┃ ┗ 📜components_example_widget.dart
- ┃ ┃ ┃ ┗ 📜components.dart
- ┃ ┃ ┣ 📂test
- ┃ ┃ ┃ ┗ 📂src
- ┃ ┃ ┃ ┃ ┗ 📜my_project_test.dart
- ┃ ┃ ┣ 📜analysis_options.yaml
- ┃ ┃ ┗ 📜pubspec.yaml
- ┃ ┣ 📂dependencies
- ┃ ┃ ┣ 📂lib
- ┃ ┃ ┃ ┗ 📜dependencies.dart
- ┃ ┃ ┣ 📜analysis_options.yaml
- ┃ ┃ ┗ 📜pubspec.yaml
- ┃ ┣ 📂di
- ┃ ┃ ┣ 📂lib
- ┃ ┃ ┃ ┣ 📂src
- ┃ ┃ ┃ ┃ ┗ 📜di_injection_module.dart
- ┃ ┃ ┃ ┗ 📜di.dart
- ┃ ┃ ┣ 📜analysis_options.yaml
- ┃ ┃ ┗ 📜pubspec.yaml
- ┃ ┣ 📂internationalization
- ┃ ┃ ┣ 📂lib
- ┃ ┃ ┃ ┣ 📂src
- ┃ ┃ ┃ ┃ ┗ 📂l10n
- ┃ ┃ ┃ ┃ ┃ ┗ 📜intl_en.arb
- ┃ ┃ ┃ ┗ 📜internationalization.dart
- ┃ ┃ ┣ 📜analysis_options.yaml
- ┃ ┃ ┣ 📜l10n.yaml
- ┃ ┃ ┗ 📜pubspec.yaml
- ┃ ┣ 📂network
- ┃ ┃ ┣ 📂lib
- ┃ ┃ ┃ ┗ 📜network.dart
- ┃ ┃ ┣ 📜analysis_options.yaml
- ┃ ┃ ┗ 📜pubspec.yaml
- ┃ ┣ 📂routes
- ┃ ┃ ┣ 📂lib
- ┃ ┃ ┃ ┣ 📂src
- ┃ ┃ ┃ ┃ ┗ 📜route_names.dart
- ┃ ┃ ┃ ┗ 📜routes.dart
- ┃ ┃ ┣ 📜analysis_options.yaml
- ┃ ┃ ┗ 📜pubspec.yaml
- ┃ ┗ 📂theme
- ┃ ┃ ┣ 📂assets
- ┃ ┃ ┃ ┣ 📂images
- ┃ ┃ ┃ ┃ ┗ 📜empty_img.png
- ┃ ┃ ┃ ┗ 📂svg
- ┃ ┃ ┃ ┃ ┗ 📜empty_ico.svg
- ┃ ┃ ┣ 📂lib
- ┃ ┃ ┃ ┣ 📂src
- ┃ ┃ ┃ ┃ ┣ 📂colors
- ┃ ┃ ┃ ┃ ┃ ┗ 📜theme_colors.dart
- ┃ ┃ ┃ ┃ ┣ 📂icons
- ┃ ┃ ┃ ┃ ┃ ┗ 📜theme_icons.dart
- ┃ ┃ ┃ ┃ ┣ 📂images
- ┃ ┃ ┃ ┃ ┃ ┗ 📜theme_images.dart
- ┃ ┃ ┃ ┃ ┣ 📂spacers
- ┃ ┃ ┃ ┃ ┃ ┗ 📜theme_spacers.dart
- ┃ ┃ ┃ ┃ ┣ 📂text_styles
- ┃ ┃ ┃ ┃ ┃ ┗ 📜theme_text_styles.dart
- ┃ ┃ ┃ ┃ ┗ 📂theme_datas
- ┃ ┃ ┃ ┃ ┃ ┗ 📜theme_datas.dart
- ┃ ┃ ┃ ┗ 📜theme.dart
- ┃ ┃ ┣ 📜analysis_options.yaml
- ┃ ┃ ┗ 📜pubspec.yaml
- ┣ 📂features
- ┃ ┗ 📂feat_example
- ┃ ┃ ┣ 📂lib
- ┃ ┃ ┃ ┣ 📂src
- ┃ ┃ ┃ ┃ ┣ 📂config
- ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_const.dart
- ┃ ┃ ┃ ┃ ┣ 📂data
- ┃ ┃ ┃ ┃ ┃ ┣ 📂datasources
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂local
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_local_datasource_impl.dart
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂remote
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_remote_datasource_impl.dart
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_datasource.dart
- ┃ ┃ ┃ ┃ ┃ ┣ 📂models
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜feat_example_request_model.dart
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_response_model.dart
- ┃ ┃ ┃ ┃ ┃ ┗ 📂repositories
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_repository_impl.dart
- ┃ ┃ ┃ ┃ ┣ 📂di
- ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_provider.dart
- ┃ ┃ ┃ ┃ ┣ 📂domain
- ┃ ┃ ┃ ┃ ┃ ┣ 📂entities
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_entity.dart
- ┃ ┃ ┃ ┃ ┃ ┣ 📂repositories
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_respository.dart
- ┃ ┃ ┃ ┃ ┃ ┗ 📂usecases
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_usecase.dart
- ┃ ┃ ┃ ┃ ┗ 📂presentation
- ┃ ┃ ┃ ┃ ┃ ┣ 📂application
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂feat_example_counter
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜feat_example_counter_cubit.dart
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_counter_state.dart
- ┃ ┃ ┃ ┃ ┃ ┣ 📂pages
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_page.dart
- ┃ ┃ ┃ ┃ ┃ ┗ 📂widgets
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_widget.dart
- ┃ ┃ ┃ ┗ 📜feat_example.dart
- ┃ ┃ ┣ 📂test
- ┃ ┃ ┃ ┗ 📂src
- ┃ ┃ ┃ ┃ ┗ 📜feat_example_test.dart
- ┃ ┃ ┣ 📜analysis_options.yaml
- ┃ ┃ ┗ 📜pubspec.yaml
- ┣ 📂ios
- ┣ 📂resources
- ┣ 📜.gitignore
- ┣ 📜analysis_options.yaml
- ┣ 📜pubspec.yaml
- ┗ 📜README.md
+📦my_project  
+ ┣ 📂android  
+ ┣ 📂core  
+ ┃ ┣ 📂components  
+ ┃ ┃ ┣ 📂lib  
+ ┃ ┃ ┃ ┣ 📂src  
+ ┃ ┃ ┃ ┃ ┣ 📂config  
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜components_config.dart  
+ ┃ ┃ ┃ ┃ ┗ 📂presentation  
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜components_example_widget.dart  
+ ┃ ┃ ┃ ┗ 📜components.dart  
+ ┃ ┃ ┣ 📂test  
+ ┃ ┃ ┃ ┗ 📂src  
+ ┃ ┃ ┃ ┃ ┗ 📜my_project_test.dart  
+ ┃ ┃ ┣ 📜analysis_options.yaml  
+ ┃ ┃ ┗ 📜pubspec.yaml  
+ ┃ ┣ 📂dependencies  
+ ┃ ┃ ┣ 📂lib  
+ ┃ ┃ ┃ ┗ 📜dependencies.dart  
+ ┃ ┃ ┣ 📜analysis_options.yaml  
+ ┃ ┃ ┗ 📜pubspec.yaml  
+ ┃ ┣ 📂di  
+ ┃ ┃ ┣ 📂lib  
+ ┃ ┃ ┃ ┣ 📂src  
+ ┃ ┃ ┃ ┃ ┗ 📜di_injection_module.dart  
+ ┃ ┃ ┃ ┗ 📜di.dart  
+ ┃ ┃ ┣ 📜analysis_options.yaml  
+ ┃ ┃ ┗ 📜pubspec.yaml  
+ ┃ ┣ 📂internationalization  
+ ┃ ┃ ┣ 📂lib  
+ ┃ ┃ ┃ ┣ 📂src  
+ ┃ ┃ ┃ ┃ ┗ 📂l10n  
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜intl_en.arb  
+ ┃ ┃ ┃ ┗ 📜internationalization.dart  
+ ┃ ┃ ┣ 📜analysis_options.yaml  
+ ┃ ┃ ┣ 📜l10n.yaml  
+ ┃ ┃ ┗ 📜pubspec.yaml  
+ ┃ ┣ 📂network  
+ ┃ ┃ ┣ 📂lib  
+ ┃ ┃ ┃ ┗ 📜network.dart  
+ ┃ ┃ ┣ 📜analysis_options.yaml  
+ ┃ ┃ ┗ 📜pubspec.yaml  
+ ┃ ┣ 📂routes  
+ ┃ ┃ ┣ 📂lib  
+ ┃ ┃ ┃ ┣ 📂src  
+ ┃ ┃ ┃ ┃ ┗ 📜route_names.dart  
+ ┃ ┃ ┃ ┗ 📜routes.dart  
+ ┃ ┃ ┣ 📜analysis_options.yaml  
+ ┃ ┃ ┗ 📜pubspec.yaml  
+ ┃ ┗ 📂theme  
+ ┃ ┃ ┣ 📂assets  
+ ┃ ┃ ┃ ┣ 📂images  
+ ┃ ┃ ┃ ┃ ┗ 📜empty_img.png  
+ ┃ ┃ ┃ ┗ 📂svg  
+ ┃ ┃ ┃ ┃ ┗ 📜empty_ico.svg  
+ ┃ ┃ ┣ 📂lib  
+ ┃ ┃ ┃ ┣ 📂src  
+ ┃ ┃ ┃ ┃ ┣ 📂colors  
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜theme_colors.dart  
+ ┃ ┃ ┃ ┃ ┣ 📂icons  
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜theme_icons.dart  
+ ┃ ┃ ┃ ┃ ┣ 📂images  
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜theme_images.dart  
+ ┃ ┃ ┃ ┃ ┣ 📂spacers  
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜theme_spacers.dart  
+ ┃ ┃ ┃ ┃ ┣ 📂text_styles  
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜theme_text_styles.dart  
+ ┃ ┃ ┃ ┃ ┗ 📂theme_datas  
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜theme_datas.dart  
+ ┃ ┃ ┃ ┗ 📜theme.dart  
+ ┃ ┃ ┣ 📜analysis_options.yaml  
+ ┃ ┃ ┗ 📜pubspec.yaml  
+ ┣ 📂features  
+ ┃ ┗ 📂feat_example  
+ ┃ ┃ ┣ 📂lib  
+ ┃ ┃ ┃ ┣ 📂src  
+ ┃ ┃ ┃ ┃ ┣ 📂config  
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_const.dart  
+ ┃ ┃ ┃ ┃ ┣ 📂data  
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂datasources  
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂local  
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_local_datasource_impl.dart  
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂remote  
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_remote_datasource_impl.dart  
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_datasource.dart  
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂models  
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜feat_example_request_model.dart  
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_response_model.dart  
+ ┃ ┃ ┃ ┃ ┃ ┗ 📂repositories  
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_repository_impl.dart  
+ ┃ ┃ ┃ ┃ ┣ 📂di  
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_provider.dart  
+ ┃ ┃ ┃ ┃ ┣ 📂domain  
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂entities  
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_entity.dart  
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂repositories  
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_respository.dart  
+ ┃ ┃ ┃ ┃ ┃ ┗ 📂usecases  
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_usecase.dart  
+ ┃ ┃ ┃ ┃ ┗ 📂presentation  
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂application  
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂feat_example_counter  
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜feat_example_counter_cubit.dart  
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_counter_state.dart  
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂pages  
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_page.dart  
+ ┃ ┃ ┃ ┃ ┃ ┗ 📂widgets  
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜feat_example_widget.dart  
+ ┃ ┃ ┃ ┗ 📜feat_example.dart  
+ ┃ ┃ ┣ 📂test  
+ ┃ ┃ ┃ ┗ 📂src  
+ ┃ ┃ ┃ ┃ ┗ 📜feat_example_test.dart  
+ ┃ ┃ ┣ 📜analysis_options.yaml  
+ ┃ ┃ ┗ 📜pubspec.yaml  
+ ┣ 📂ios  
+ ┣ 📂resources  
+ ┣ 📜.gitignore  
+ ┣ 📜analysis_options.yaml  
+ ┣ 📜pubspec.yaml  
+ ┗ 📜README.md  
 
 `core`: Contains all the core functionalities and configurations used by the packages under `features` and the main project.
 
