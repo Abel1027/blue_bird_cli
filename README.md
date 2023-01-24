@@ -237,6 +237,9 @@ blue_bird create my_project --desc "My new Flutter project" --org "com.custom.or
 # Create a new Flutter project named my_project with a custom application id
 blue_bird create my_project --application-id "com.custom.app.id"
 
+# Create a new Flutter project named my_project at directory named my_projects
+blue_bird create my_project --output-directory "my_projects"
+
 # Create a new Flutter package named my_package (used for the feat_example package generation)
 blue_bird create my_package --template flutter_package
 ```
