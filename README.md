@@ -2,7 +2,7 @@
 <img src="https://github.com/Abel1027/blue_bird_cli/raw/main/blue_bird_cli_logo.svg" alt="Blue Bird CLI" height=300/>
 </p>
 
-![coverage][coverage_badge]
+[!coverage][coverage_badge]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
 
