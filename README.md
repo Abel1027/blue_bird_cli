@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://github.com/Abel1027/blue_bird_cli/raw/develop/blue_bird_cli_logo.svg" alt="Blue Bird CLI" />
+<img src="https://github.com/Abel1027/blue_bird_cli/raw/develop/blue_bird_cli_logo.svg" alt="Blue Bird CLI" height=400/>
 </p>
 
 ![coverage][coverage_badge]
