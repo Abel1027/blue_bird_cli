@@ -246,7 +246,7 @@ blue_bird create my_package --template flutter_package
 
 ---
 
-[coverage_badge]: https://github.com/Abel1027/blue_bird_cli/raw/develop/coverage_badge.svg
+[coverage_badge]: https://github.com/Abel1027/blue_bird_cli/raw/main/coverage_badge.svg
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
