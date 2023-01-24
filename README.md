@@ -36,6 +36,15 @@ $ blue_bird --version
 $ blue_bird --help
 ```
 
+### `update` command
+
+Use the `update` command if there is a new version of the Blue Bird CLI and you want to update your local version to the last one.
+
+```sh
+# Update the Blue Bird CLI
+blue_bird update
+```
+
 ### `create` command
 
 The following command create a Flutter project with a more complex architecture ideally for large Flutter apps.
