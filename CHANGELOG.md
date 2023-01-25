@@ -1,3 +1,7 @@
+# 0.1.2
+
+- Fix application-id parameter: create empty application bundle id when not specified
+
 # 0.1.1
 
 - Add full description.
