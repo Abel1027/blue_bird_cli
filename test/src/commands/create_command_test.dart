@@ -64,7 +64,8 @@ Usage: blue_bird create <project name>
                                          (defaults to "true")
     --windows                            The plugin supports the Windows platform.
                                          (defaults to "true")
-    --application-id                     The bundle identifier on iOS or application id on Android. (defaults to <org-name>.<project-name>)
+    --application-id                     The bundle identifier on iOS or application id on Android.
+                                         (defaults to "com.example.bluebird.appid")
     --in-project                         Include the new project within an existing one with all dependencies imported
                                          (defaults to "false")
 
