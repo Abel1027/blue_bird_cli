@@ -10,6 +10,7 @@ import 'package:path/path.dart' as path;
 import 'package:universal_io/io.dart';
 
 const _defaultOrgName = 'com.example.bluebird';
+const _defaultAppId = '$_defaultOrgName.appid';
 const _defaultDescription = 'Blue Bird CLI.';
 
 final _templates = [
@@ -104,8 +105,8 @@ class CreateCommand extends Command<int> {
       )
       ..addOption(
         'application-id',
-        help: 'The bundle identifier on iOS or application id on Android. '
-            '(defaults to <org-name>.<project-name>)',
+        help: 'The bundle identifier on iOS or application id on Android.',
+        defaultsTo: _defaultAppId,
       )
       ..addOption(
         'in-project',
@@ -146,13 +147,13 @@ class CreateCommand extends Command<int> {
     final template = _template;
     final android = _argResults['android'] as String? ?? 'true';
     final ios = _argResults['ios'] as String? ?? 'true';
-    final applicationId = _argResults['application-id'] as String?;
+    final applicationId = _applicationId;
     final inProject = _argResults['in-project'] as String? ?? 'false';
     final vars = <String, dynamic>{
       'project_name': projectName,
       'description': description,
       'org_name': orgName,
-      if (applicationId != null) 'application_id': applicationId,
+      'application_id': applicationId,
       'platforms': <String>[
         if (android.toBool()) 'android',
         if (ios.toBool()) 'ios',
@@ -193,6 +194,13 @@ class CreateCommand extends Command<int> {
     final orgName = _argResults['org-name'] as String? ?? _defaultOrgName;
     _validateOrgName(orgName);
     return orgName;
+  }
+
+  /// Gets the application id.
+  String get _applicationId {
+    final appId = _argResults['application-id'] as String? ?? _defaultAppId;
+    _validateOrgName(appId);
+    return appId;
   }
 
   Template get _template {
