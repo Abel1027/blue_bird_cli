@@ -1,6 +1,13 @@
+# 0.1.3
+
+Update flutter package.
+
+- Convert fromJson into a factory constructor.
+- Export provider.
+
 # 0.1.2
 
-- Fix application-id parameter: create empty application bundle id when not specified
+- Fix application-id parameter: create empty application bundle id when not specified.
 
 # 0.1.1
 
