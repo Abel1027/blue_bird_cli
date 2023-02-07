@@ -15,7 +15,7 @@ final blueBirdFlutterPackageBundle = MasonBundle.fromJson(<String, dynamic>{
       "path":
           "{{project_name.snakeCase()}}/lib/src/config/{{project_name.snakeCase()}}_const.dart",
       "data":
-          "Ly8vIFt7e3Byb2plY3RfbmFtZS5wYXNjYWxDYXNlKCl9fUNvbnN0XSBkb2MNCmNsYXNzIHt7cHJvamVjdF9uYW1lLnBhc2NhbENhc2UoKX19Q29uc3Qgew0KICBjb25zdCB7e3Byb2plY3RfbmFtZS5wYXNjYWxDYXNlKCl9fUNvbnN0Ll8oKTsNCg0KICAvLy8gW3t7cHJvamVjdF9uYW1lLmNhbWVsQ2FzZSgpfX1Ub29sYmFySGVpZ2h0XSBkb2MNCiAgc3RhdGljIGNvbnN0IGludCB7e3Byb2plY3RfbmFtZS5jYW1lbENhc2UoKX19VG9vbGJhckhlaWdodCA9IDE2Ow0KfQ0K",
+          "Ly8vIFt7e3Byb2plY3RfbmFtZS5wYXNjYWxDYXNlKCl9fUNvbnN0XSBkb2MNCm1peGluIHt7cHJvamVjdF9uYW1lLnBhc2NhbENhc2UoKX19Q29uc3Qgew0KICAvLy8gW3t7cHJvamVjdF9uYW1lLmNhbWVsQ2FzZSgpfX1Ub29sYmFySGVpZ2h0XSBkb2MNCiAgc3RhdGljIGNvbnN0IGludCB7e3Byb2plY3RfbmFtZS5jYW1lbENhc2UoKX19VG9vbGJhckhlaWdodCA9IDE2Ow0KfQ0K",
       "type": "text"
     },
     {

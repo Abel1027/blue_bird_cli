@@ -1,6 +1,6 @@
 name: blue_bird_cli
 description: A Command-Line Interface for generating complex large-scale Flutter project and package architectures.
-version: 0.1.3
+version: 0.1.4
 repository: https://github.com/Abel1027/blue_bird_cli
 
 environment:

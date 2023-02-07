@@ -27,6 +27,7 @@ class FlutterProjectTemplate extends Template {
     final l10nPath = path.join(outputDir.path, 'core', 'internationalization');
     await generateL10n(logger, Directory(l10nPath));
     await applyDartFixes(logger, outputDir);
+    await activateMelos(logger);
     _logSummary(logger);
   }
 

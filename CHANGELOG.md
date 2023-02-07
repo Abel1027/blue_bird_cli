@@ -1,3 +1,12 @@
+# 0.1.4
+
+Update flutter project.
+
+- Add melos configuration.
+- Activate melos when project is created.
+- Replace private constructors with mixin.
+- Update README.md with android license troubleshooting.
+
 # 0.1.3
 
 Update flutter package.

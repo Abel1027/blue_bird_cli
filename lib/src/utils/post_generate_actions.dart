@@ -52,3 +52,18 @@ Future<void> generateL10n(
     generateL10nProgress.complete();
   }
 }
+
+/// Activate Melos CLI.
+Future<void> activateMelos(Logger logger) async {
+  final isDartInstalled = await Dart.installed(logger: logger);
+  if (isDartInstalled) {
+    final activateMelosProgress = logger.progress(
+      'Activating Melos CLI',
+    );
+    await Dart.activate(
+      logger: logger,
+      package: 'melos',
+    );
+    activateMelosProgress.complete();
+  }
+}

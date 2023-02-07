@@ -48,4 +48,21 @@ class Dart {
 
     await Future.wait<void>(processes);
   }
+
+  /// Activate global package.
+  static Future<bool> activate({
+    required Logger logger,
+    required String package,
+  }) async {
+    try {
+      await _Cmd.run(
+        'dart',
+        ['pub global activate $package'],
+        logger: logger,
+      );
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
 }
