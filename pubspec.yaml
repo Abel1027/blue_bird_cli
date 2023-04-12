@@ -15,7 +15,7 @@ dependencies:
   mason_logger: ^0.2.3
   meta: ^1.8.0
   path: ^1.8.3
-  pub_updater: ^0.2.3
+  pub_updater: ">=0.2.3 <0.4.0"
   pubspec_parse: ^1.2.1
   stack_trace: ^1.11.0
   universal_io: ^2.0.4
